@@ -24,7 +24,7 @@ describe('MachineService', () => {
     let products!: Product[];
     let productsUser!: CollectedProducts[];
 
-    service.getProducts().subscribe((p) => {
+    service.getProductsDrink().subscribe((p) => {
       products = p;
     });
     tick();
@@ -50,7 +50,7 @@ describe('MachineService', () => {
   it('should give me the change', fakeAsync(() => {
     let products!: Product[];
 
-    service.getProducts().subscribe((p) => {
+    service.getProductsDrink().subscribe((p) => {
       products = p;
     });
     tick();

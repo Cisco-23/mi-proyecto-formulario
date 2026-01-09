@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { COINS, CollectedProducts, Product, PRODUCTS_MOCK } from '../model/product.data';
+import {
+  COINS,
+  CollectedProducts,
+  Product,
+  PRODUCTS_DRINKS,
+  PRODUCTS_SNACKS,
+} from '../model/product.data';
 @Injectable({
   providedIn: 'root',
 })
 export class MachineService {
   private balance = 0;
   private change = 0;
-  private products: Product[] = PRODUCTS_MOCK;
+  private productsDrinks: Product[] = PRODUCTS_DRINKS;
+  private productsSnacks: Product[] = PRODUCTS_SNACKS;
   private productsUser: CollectedProducts[] = [];
   private coins: number[] = COINS;
 
@@ -57,8 +64,12 @@ export class MachineService {
     return this.change;
   }
 
-  getProducts(): Observable<Product[]> {
-    return of(PRODUCTS_MOCK);
+  getProductsDrink(): Observable<Product[]> {
+    return of(this.productsDrinks);
+  }
+
+  getProductSnacks(): Observable<Product[]> {
+    return of(this.productsSnacks);
   }
 
   getCoins(): Observable<number[]> {
