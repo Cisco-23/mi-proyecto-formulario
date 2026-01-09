@@ -14,13 +14,15 @@ import { TableModule } from 'primeng/table';
 export class App implements OnInit {
   protected readonly machineService = inject(MachineService);
 
-  products = signal<Product[]>([]);
+  productsDrinks = signal<Product[]>([]);
+  productsSnacks = signal<Product[]>([]);
   productsUsuari = signal<CollectedProducts[]>([]);
   coins = signal<number[]>([]);
 
   ngOnInit() {
     this.loadCoins();
-    this.loadProducts();
+    this.loadProductsDrink();
+    this.loadProductsSnacks();
     this.loadProductsUsers();
   }
 
@@ -36,9 +38,15 @@ export class App implements OnInit {
     });
   }
 
-  loadProducts() {
-    this.machineService.getProducts().subscribe((product) => {
-      this.products.set(product);
+  loadProductsDrink() {
+    this.machineService.getProductsDrink().subscribe((product) => {
+      this.productsDrinks.set(product);
+    });
+  }
+
+  loadProductsSnacks() {
+    this.machineService.getProductSnacks().subscribe((product) => {
+      this.productsSnacks.set(product);
     });
   }
 

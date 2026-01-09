@@ -12,38 +12,76 @@
     <h2>Saldo: {{ machineService.getBalance() | currency : 'EUR' }}</h2>
     <p-button (click)="returnMoney()" label="Devolver" severity="success" />
   </div>
+  <div class="grid">
+    <div class="col-3">
+      <p-table [value]="productsDrinks()" [tableStyle]="{ 'min-width': '5rem' }">
+        <ng-template pTemplate="header">
+          <h2>Bebidas</h2>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Acción</th>
+          </tr>
+        </ng-template>
 
-  <p-table [value]="products()" [tableStyle]="{ 'min-width': '5rem' }">
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Producto</th>
-        <th>Precio</th>
-        <th>Stock</th>
-        <th>Acción</th>
-      </tr>
-    </ng-template>
+        <ng-template pTemplate="body" let-product>
+          <tr>
+            <td>{{ product.name }}</td>
 
-    <ng-template pTemplate="body" let-product>
-      <tr>
-        <td>{{ product.name }}</td>
+            <td>{{ product.price | currency : 'EUR' }}</td>
 
-        <td>{{ product.price | currency : 'EUR' }}</td>
+            <td>{{ product.stock }}</td>
 
-        <td>{{ product.stock }}</td>
+            <td>
+              <p-button
+                label="Seleccionar"
+                icon="pi pi-shopping-cart"
+                severity="success"
+                [disabled]="product.stock === 0"
+                (click)="selectProduct(product)"
+              >
+              </p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div class="col-3">
+      <p-table [value]="productsSnacks()" [tableStyle]="{ 'min-width': '5rem' }">
+        <ng-template pTemplate="header">
+          <h2>Comida</h2>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Acción</th>
+          </tr>
+        </ng-template>
 
-        <td>
-          <p-button
-            label="Seleccionar"
-            icon="pi pi-shopping-cart"
-            severity="success"
-            [disabled]="product.stock === 0"
-            (click)="selectProduct(product)"
-          >
-          </p-button>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
+        <ng-template pTemplate="body" let-product>
+          <tr>
+            <td>{{ product.name }}</td>
+
+            <td>{{ product.price | currency : 'EUR' }}</td>
+
+            <td>{{ product.stock }}</td>
+
+            <td>
+              <p-button
+                label="Seleccionar"
+                icon="pi pi-shopping-cart"
+                severity="success"
+                [disabled]="product.stock === 0"
+                (click)="selectProduct(product)"
+              >
+              </p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
 
   <div class="result-section">
     <h2>Cambio: {{ machineService.getChange() | currency : 'EUR' }}</h2>
@@ -53,21 +91,23 @@
     }
   </div>
 
-  @if (productsUsuari().length > 0) {
-  <p-table [value]="productsUsuari()">
-    <ng-template #header>
-      <tr>
-        <th>Producto</th>
-        <th>Cantidad</th>
-      </tr>
-    </ng-template>
-    <ng-template #body let-product>
-      <tr>
-        <td>{{ product.name }}</td>
-        <td>{{ product.amount }}</td>
-      </tr>
-    </ng-template>
-  </p-table>
-  <p-button (click)="collectProduct()" label="Recojer" severity="success" />
-  }
+  <div class="col-2">
+    @if (productsUsuari().length > 0) {
+    <p-table [value]="productsUsuari()">
+      <ng-template #header>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-product>
+        <tr>
+          <td>{{ product.name }}</td>
+          <td>{{ product.amount }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <p-button (click)="collectProduct()" label="Recojer" severity="success" />
+    }
+  </div>
 </div>
