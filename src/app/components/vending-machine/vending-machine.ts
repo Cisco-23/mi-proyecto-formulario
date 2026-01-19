@@ -1,5 +1,5 @@
 import { Component, inject, Injectable, Input, OnInit, signal } from '@angular/core';
-import { VendingMachineService } from '../../services/VendingMachine.services';
+import { VendingMachineService } from '../../services/vending-machine.services';
 import { CollectedProducts, Product } from '../../model/product.data';
 import { Button, ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';

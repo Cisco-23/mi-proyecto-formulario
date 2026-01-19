@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VendingMachine } from './components/vending-machine/vending-machine';
-import { VendingMachineService } from './services/VendingMachine.services';
+import { VendingMachineService } from './services/vending-machine.services';
 import { Product } from './model/product.data';
 
 @Component({
